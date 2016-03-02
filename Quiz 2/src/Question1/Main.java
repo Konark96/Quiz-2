@@ -30,7 +30,6 @@ Make sure to submit a .zip file (not jar, not .war, not .rar)*/
 package Question1;
 
 import java.util.Scanner;
-import java.lang.Object;
 
 public class Main {
 
@@ -41,21 +40,37 @@ public class Main {
 	 * @version 1.0.0
 	 */
 	public static void main(String args[]) {
-		float itc = 12520; // Initial Tuition Cost
-		float pv = 0;
-		System.out.println("What is the percentage increases for tuition costs?");
-		float pit = sc.nextFloat(); // Percentage Increases for Tuition
+		double itc = 12520; // Initial Tuition Cost
 		System.out.println("What is the repayment APR?");
-		float rAPR = sc.nextFloat(); // Repayment APR
+		double rAPR = sc.nextFloat(); // Repayment APR
 		int term = 4; // Percentage Increases for Tuition
-		System.out.printf(1+"%f", itc);
-		while(pv < 1){
-			System.out.println(2^3);
-			pv=1;
-		}
+
+		double ans = amortization(itc, (rAPR / 12), term);
+
+		System.out.printf("The amortization is %f", ans);
 	}
-	public boolean r(){//returns true
-		int i = 1;
-		return true;
+
+	public static double amortization(double p, double i, int n) {
+		double ans = p * (i + (i / (updateRate(i, n) - 1)));
+		return ans;
+	}
+
+	public static double updateRate(double i, int n) {
+		System.out.println("What is the percentage increases for tuition costs?");
+		double pit = sc.nextFloat(); // Percentage Increases for Tuition
+		double ans = (1 + i);
+		while (n > 1) {
+			ans += 1 + updateI(i, i, n, pit);
+			n--;
+		}
+		return ans;
+	}
+
+	public static double updateI(double iFinal, double i, int exp, double inc) {
+		if (exp > 1) {
+			i=i*updateI(iFinal, i + i * inc, exp - 1, inc);
+		}
+		return i;
+
 	}
 }

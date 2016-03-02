@@ -9,7 +9,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class MainTests {
-	Main m;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -21,19 +20,21 @@ public class MainTests {
 
 	@Before
 	public void setUp() throws Exception {
-		m = new Main();
 	}
 
 	@After
 	public void tearDown() throws Exception {
 	}
 
+
 	@Test
 	public void test() {
-		assertEquals("trbhue", m.r(), true);
-		assertEquals("trbhue", m.r(), true);
-		assertEquals("trbhue", m.r(), true);
-		assertEquals("trbhue", m.r(), true);
+		System.out.println(Main.updateI(10.0, 10.1, 2, .1));
+		assertEquals(Main.updateI(10.0, 10.0, 1, 10), 10.1,.1);
+		assertEquals(Main.updateI(10.0, 10.0, 2, .1), 110,.1);
+		assertEquals(Main.updateI(10.1, 10.1, 2, .1), 112.211,.001);
+	//	assertEquals(Main.updateI(10.0, 12.3, 4, .5), 110,.1);
+		
 
 	}
 }
