@@ -28,16 +28,24 @@ Methods should be well-documented, and javadocs created for project
 Make sure to submit a .zip file (not jar, not .war, not .rar)*/
 
 package Question1;
-
 import java.util.Scanner;
 
+/**
+ * @author Konark Christian
+ * @version 2.1.0
+ */
 public class Main {
-
+/**
+ * Creates a scanner so user can input some data
+ **/
 	private static Scanner sc = new Scanner(System.in);
 
 	/**
-	 * @author Konark Christian
-	 * @version 1.0.0
+	 * @param 
+	 * 		double itc
+	 * 		double rAPR
+	 * 		int term
+	 * 		double ans: this is where the amortization is saved
 	 */
 	public static void main(String args[]) {
 		double itc = 12520; // Initial Tuition Cost
@@ -49,12 +57,24 @@ public class Main {
 
 		System.out.printf("The amortization is %f", ans);
 	}
-
+	/**
+	 * 
+	 * @param p: 	Amount of principal 
+	 * @param i: 	Periodic interest rate
+	 * @param n:	Number of payments
+	 * @return:		Periodic payment amount
+	 */
 	public static double amortization(double p, double i, int n) {
 		double ans = p * (i + (i / (updateRate(i, n) - 1)));
 		return ans;
 	}
 
+	/**
+	 * @param i:	Periodic interest rate
+	 * @param n: 	Number of payments
+	 * @param pit
+	 * @return:		(1+i)^n with percentage increase for tuition accounted for
+	 */
 	public static double updateRate(double i, int n) {
 		System.out.println("What is the percentage increases for tuition costs?");
 		double pit = sc.nextFloat(); // Percentage Increases for Tuition
@@ -65,10 +85,17 @@ public class Main {
 		}
 		return ans;
 	}
+	/**
+	 * @param iFinal:	Unchanging i value
+	 * @param i:		Changing i value
+	 * @param exp:		The exponent, represents years
+	 * @param inc:		The amount of increase each year
+	 * @return
+	 */
 
 	public static double updateI(double iFinal, double i, int exp, double inc) {
 		if (exp > 1) {
-			i=i*updateI(iFinal, i + i * inc, exp - 1, inc);
+			i=i*updateI(iFinal, iFinal + i * inc, exp - 1, inc);
 		}
 		return i;
 

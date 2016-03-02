@@ -29,11 +29,10 @@ public class MainTests {
 
 	@Test
 	public void test() {
-		System.out.println(Main.updateI(10.0, 10.1, 2, .1));
 		assertEquals(Main.updateI(10.0, 10.0, 1, 10), 10.1,.1);
-		assertEquals(Main.updateI(10.0, 10.0, 2, .1), 110,.1);
+		assertEquals(Main.updateI(10.0, 10.0, 2, .2), 120,.1);
 		assertEquals(Main.updateI(10.1, 10.1, 2, .1), 112.211,.001);
-	//	assertEquals(Main.updateI(10.0, 12.3, 4, .5), 110,.1);
+		assertEquals(Main.updateI(10.0, 10.0, 4, .1), 13565.31, .01);
 		
 
 	}
